@@ -22,7 +22,11 @@ cp .env.example .env
 - `POLL_INTERVAL_MINUTES`: 크롤링 주기(분)
 - `STATE_DB_PATH`: 게시글 ID를 저장할 SQLite 경로
 - `KAKAO_ACCESS_TOKEN`: 카카오 REST API 토큰
-- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_FROM`, `EMAIL_TO`: 이메일 발송 설정
+- 이메일 발송 설정:
+  - `SMTP_HOST`, `SMTP_PORT`
+  - `SMTP_USE_TLS` (기본 true: STARTTLS/587, SSL 465를 쓰면 false)
+  - `SMTP_USER`, `SMTP_PASSWORD`
+  - `EMAIL_FROM`, `EMAIL_TO`
 
 ## 실행 방법
 

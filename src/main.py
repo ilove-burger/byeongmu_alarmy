@@ -34,6 +34,12 @@ def run_cycle() -> None:
     smtp_port = int(os.environ.get("SMTP_PORT", "587"))
     smtp_user = os.environ.get("SMTP_USER", "")
     smtp_password = os.environ.get("SMTP_PASSWORD", "")
+    smtp_use_tls_env = os.environ.get("SMTP_USE_TLS")
+    smtp_use_tls = (
+        smtp_use_tls_env.lower() == "true"
+        if smtp_use_tls_env is not None
+        else smtp_port != 465  # 465는 기본적으로 SSL을 사용하므로 False
+    )
     email_from = os.environ.get("EMAIL_FROM", "")
     email_to = os.environ.get("EMAIL_TO", "")
     state_path = os.environ.get("STATE_DB_PATH", "state.db")
@@ -69,6 +75,7 @@ def run_cycle() -> None:
                 recipient=email_to,
                 posts=new_posts,
                 board_url=board_url,
+                use_tls=smtp_use_tls,
             )
             logger.info("이메일 알림 전송 완료")
         except Exception as exc:  # noqa: BLE001
