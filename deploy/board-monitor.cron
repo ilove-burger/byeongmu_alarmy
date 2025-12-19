@@ -1,0 +1,1 @@
+*/5 * * * * cd /opt/board-monitor && /usr/bin/env BOARD_URL=$BOARD_URL /usr/bin/python -m src.main >> /var/log/board-monitor.log 2>&1

@@ -1,0 +1,13 @@
+[Unit]
+Description=Board monitor
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/board-monitor
+EnvironmentFile=/opt/board-monitor/.env
+ExecStart=/usr/bin/python -m src.main
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
